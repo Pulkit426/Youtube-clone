@@ -1,17 +1,24 @@
 import React, { useEffect, useState } from "react";
 import { toggleMenu } from "../utils/appSlice";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { YOUTUBE_SEARCH_API } from "../utils/constants";
+import { addCacheData } from "../utils/searchCacheSlice";
 
 const Header = () => {
   const [searchQuery, setSearchQuery] = useState("");
   const [searchSuggestions, setSearchSuggestions] = useState([]);
   const [showSearchSuggestions, setShowSearchSuggestions] = useState(false);
 
+  const searchCacheData = useSelector((store) => store.searchCache);
+
   //To Handle Search API and debouncing
 
   useEffect(() => {
-    const timer = setTimeout(() => getSearchSuggestions(), 200);
+    const timer = setTimeout(() => {
+      if (searchCacheData[searchQuery])
+        setSearchSuggestions(searchCacheData[searchQuery]);
+      else getSearchSuggestions();
+    }, 200);
 
     return () => {
       clearTimeout(timer);
@@ -50,6 +57,11 @@ const Header = () => {
     const json = await data.json();
     console.log(json[1]);
     setSearchSuggestions(json[1]);
+    dispatch(
+      addCacheData({
+        [searchQuery]: json[1],
+      })
+    );
   };
 
   return (

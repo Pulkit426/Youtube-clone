@@ -5,6 +5,8 @@ import { YOUTUBE_SEARCH_API } from "../utils/constants";
 
 const Header = () => {
   const [searchQuery, setSearchQuery] = useState("");
+  const [searchSuggestions, setSearchSuggestions] = useState([]);
+  const [showSearchSuggestions, setShowSearchSuggestions] = useState(false);
 
   useEffect(() => {
     const timer = setTimeout(() => getSearchSuggestions(), 200);
@@ -24,6 +26,7 @@ const Header = () => {
     const data = await fetch(YOUTUBE_SEARCH_API + searchQuery);
     const json = await data.json();
     console.log(json[1]);
+    setSearchSuggestions(json[1]);
   };
 
   return (
@@ -43,18 +46,32 @@ const Header = () => {
       </div>
 
       <div className="col-span-12 px-10">
-        <input
-          className="w-1/2 rounded-l-full p-2 border-2 
-          border-black-400"
-          type="text"
-          placeholder="Search"
-          value={searchQuery}
-          onChange={(e) => setSearchQuery(e.target.value)}
-        />
-        <button className="bg-gray-100 px-5 py-2 rounded-r-full border-2 border-black-100">
+        <div>
           {" "}
-          🔍{" "}
-        </button>
+          <input
+            className="w-[35rem] rounded-l-full p-2 border-2 
+          border-black-400"
+            type="text"
+            placeholder="Search"
+            value={searchQuery}
+            onChange={(e) => setSearchQuery(e.target.value)}
+            onFocus={() => setShowSearchSuggestions(true)}
+            onBlur={() => setShowSearchSuggestions(false)}
+          />
+          <button className="bg-gray-100 px-5 py-2 rounded-r-full border-2 border-black-100">
+            {" "}
+            🔍{" "}
+          </button>
+        </div>
+
+        <div className="fixed bg-white w-[35rem]">
+          <ul>
+            {showSearchSuggestions &&
+              searchSuggestions.map((item) => (
+                <li className="py-2 px-5 hover:bg-gray-200"> 🔍 {item}</li>
+              ))}
+          </ul>
+        </div>
       </div>
 
       <div className="col-span-1 m-2">

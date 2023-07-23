@@ -8,6 +8,8 @@ const Header = () => {
   const [searchSuggestions, setSearchSuggestions] = useState([]);
   const [showSearchSuggestions, setShowSearchSuggestions] = useState(false);
 
+  //To Handle Search API and debouncing
+
   useEffect(() => {
     const timer = setTimeout(() => getSearchSuggestions(), 200);
 
@@ -15,6 +17,27 @@ const Header = () => {
       clearTimeout(timer);
     };
   }, [searchQuery]);
+
+  //To handle Search List hidden or shown on Scrolling
+
+  useEffect(() => {
+    console.log("USEEFFECT WORKING");
+    const handleScroll = () => {
+      if (showSearchSuggestions && searchSuggestions && window.scrollY > 50) {
+        setShowSearchSuggestions(false);
+      }
+
+      if (!showSearchSuggestions && searchSuggestions && window.scrollY < 50) {
+        setShowSearchSuggestions(true);
+      }
+    };
+
+    window.addEventListener("scroll", handleScroll);
+
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, [showSearchSuggestions]);
 
   const dispatch = useDispatch();
 

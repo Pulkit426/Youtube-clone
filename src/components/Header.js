@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { toggleMenu } from "../utils/appSlice";
 import { useDispatch, useSelector } from "react-redux";
 import { YOUTUBE_SEARCH_API } from "../utils/constants";
@@ -8,6 +8,8 @@ const Header = () => {
   const [searchQuery, setSearchQuery] = useState("");
   const [searchSuggestions, setSearchSuggestions] = useState([]);
   const [showSearchSuggestions, setShowSearchSuggestions] = useState(false);
+
+  const searchRef = useRef(null);
 
   const searchCacheData = useSelector((store) => store.searchCache);
 
@@ -34,7 +36,12 @@ const Header = () => {
         setShowSearchSuggestions(false);
       }
 
-      if (!showSearchSuggestions && searchSuggestions && window.scrollY < 50) {
+      if (
+        !showSearchSuggestions &&
+        document.activeElement === searchRef.current &&
+        searchSuggestions &&
+        window.scrollY < 50
+      ) {
         setShowSearchSuggestions(true);
       }
     };
@@ -84,6 +91,7 @@ const Header = () => {
         <div>
           {" "}
           <input
+            ref={searchRef}
             className="w-[35rem] rounded-l-full p-2 border-2 
           border-black-400"
             type="text"

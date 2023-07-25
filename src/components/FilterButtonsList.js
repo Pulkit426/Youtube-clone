@@ -13,7 +13,10 @@ const FilterButtonsList = () => {
   return (
     <div>
       {dataList.map((item) => (
-        <button className="p-3 m-2 border border-black-50 rounded-md bg-gray-100">
+        <button
+          key={item}
+          className="p-3 m-2 border border-black-50 rounded-md bg-gray-100"
+        >
           {item}
         </button>
       ))}

@@ -30,7 +30,6 @@ const Header = () => {
   //To handle Search List hidden or shown on Scrolling
 
   useEffect(() => {
-    console.log("USEEFFECT WORKING");
     const handleScroll = () => {
       if (showSearchSuggestions && searchSuggestions && window.scrollY > 50) {
         setShowSearchSuggestions(false);
@@ -62,7 +61,7 @@ const Header = () => {
   const getSearchSuggestions = async () => {
     const data = await fetch(YOUTUBE_SEARCH_API + searchQuery);
     const json = await data.json();
-    console.log(json[1]);
+
     setSearchSuggestions(json[1]);
     dispatch(
       addCacheData({

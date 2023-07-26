@@ -4,7 +4,7 @@ import CommentList from "./CommentsList";
 
 const CommentsSection = () => {
   return (
-    <div>
+    <div className="w-[900px]">
       <h1 className="font-bold text-2xl p-2 m-2"> Comments : </h1>
       <CommentList commentsData={commentsData} />
     </div>

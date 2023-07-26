@@ -2,10 +2,14 @@ import { createSlice } from "@reduxjs/toolkit";
 
 const liveChatSlice = createSlice({
   name: "liveChat",
-  initialState: [],
+  initialState: {
+    messages: [],
+  },
   reducers: {
     addMessage: (state, action) => {
-      state.push(action.payload);
+      if (state.messages.length > 35) state.messages.pop();
+
+      state.messages.unshift(action.payload);
     },
   },
 });

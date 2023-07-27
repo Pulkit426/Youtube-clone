@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import LiveChatComment from "./LiveChatComment";
 import { useDispatch, useSelector } from "react-redux";
 import { addMessage } from "../utils/liveChatSlice";
@@ -9,8 +9,21 @@ import {
 } from "../utils/helper";
 
 const LiveChatContainer = () => {
+  const [commentInput, setCommentInput] = useState("");
   const dispatch = useDispatch();
   const liveChatCommentsData = useSelector((store) => store.liveChat.messages);
+
+  const submitCommentHandler = () => {
+    dispatch(
+      addMessage({
+        id: randomIdGenerator(),
+        name: "Guest User",
+        text: commentInput,
+      })
+    );
+
+    setCommentInput("");
+  };
 
   useEffect(() => {
     const timer = setInterval(() => {
@@ -35,6 +48,22 @@ const LiveChatContainer = () => {
         {liveChatCommentsData.map((item) => (
           <LiveChatComment key={item.id} comment={item} />
         ))}
+      </div>
+
+      <div>
+        <input
+          type="text"
+          value={commentInput}
+          onChange={(e) => setCommentInput(e.target.value)}
+          className="p-2 m-2 border border-black w-80 rounded-lg"
+        />
+        <button
+          type="submit"
+          onClick={() => submitCommentHandler()}
+          className="p-2 bg-red-200 rounded-lg w-16"
+        >
+          Send
+        </button>
       </div>
     </div>
   );

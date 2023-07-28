@@ -1,58 +1,52 @@
+import { randomIdGenerator } from "./helper";
+
+const generateComment = () => ({
+  id: randomIdGenerator(),
+  name: "Pulkit Agrawal",
+  text: "Lorem ipsum dolor it em",
+  replies: [],
+});
+
 export const commentsData = [
   {
-    name: "Pulkit Agrawal",
-    text: "Lorem ipsum dolor it em",
+    ...generateComment(),
     replies: [
       {
-        name: "Pulkit Agrawal",
-        text: "Lorem ipsum dolor it em",
-        replies: [],
+        ...generateComment(),
+        replies: [generateComment()],
       },
       {
-        name: "Pulkit Agrawal",
-        text: "Lorem ipsum dolor it em",
+        ...generateComment(),
         replies: [
           {
-            name: "Pulkit Agrawal",
-            text: "Lorem ipsum dolor it em",
-            replies: [],
+            ...generateComment(),
+            replies: [
+              {
+                ...generateComment(),
+                replies: [generateComment()],
+              },
+            ],
           },
         ],
       },
     ],
   },
-
+  ...Array.from({ length: 2 }, () => generateComment()),
   {
-    name: "Pulkit Agrawal",
-    text: "Lorem ipsum dolor it em",
-    replies: [],
-  },
-  {
-    name: "Pulkit Agrawal",
-    text: "Lorem ipsum dolor it em",
+    ...generateComment(),
     replies: [
       {
-        name: "Pulkit Agrawal",
-        text: "Lorem ipsum dolor it em",
+        ...generateComment(),
         replies: [
           {
-            name: "Pulkit Agrawal",
-            text: "Lorem ipsum dolor it em",
+            ...generateComment(),
             replies: [
               {
-                name: "Pulkit Agrawal",
-                text: "Lorem ipsum dolor it em",
+                ...generateComment(),
                 replies: [
                   {
-                    name: "Pulkit Agrawal",
-                    text: "Lorem ipsum dolor it em",
-                    replies: [
-                      {
-                        name: "Pulkit Agrawal",
-                        text: "Lorem ipsum dolor it em",
-                        replies: [],
-                      },
-                    ],
+                    ...generateComment(),
+                    replies: [],
                   },
                 ],
               },
@@ -62,10 +56,5 @@ export const commentsData = [
       },
     ],
   },
-
-  {
-    name: "Pulkit Agrawal",
-    text: "Lorem ipsum dolor it em",
-    replies: [],
-  },
+  ...Array.from({ length: 1 }, () => generateComment()),
 ];

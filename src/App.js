@@ -4,15 +4,15 @@ import Header from "./components/Header";
 import Body from "./components/Body";
 import { Provider } from "react-redux";
 import store from "./utils/store";
-import { RouterProvider, createBrowserRouter } from "react-router-dom";
+import { createBrowserRouter } from "react-router-dom";
 import MainContainer from "./components/MainContainer";
 import WatchPage from "./components/WatchPage";
 import SearchResults from "./components/SearchResults";
 
-const appRouter = createBrowserRouter([
+export const appRouter = createBrowserRouter([
   {
     path: "/",
-    element: <Body />,
+    element: <App />,
     children: [
       {
         path: "/",
@@ -35,7 +35,7 @@ function App() {
     <Provider store={store}>
       <div className="App">
         <Header />
-        <RouterProvider router={appRouter} />
+        <Body />
       </div>
     </Provider>
   );

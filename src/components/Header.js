@@ -1,13 +1,16 @@
 import React, { useEffect, useRef, useState } from "react";
 import { toggleMenu } from "../utils/appSlice";
 import { useDispatch, useSelector } from "react-redux";
-import { YOUTUBE_SEARCH_API } from "../utils/constants";
+import { YOUTUBE_SEARCH_SUGGESTION_API } from "../utils/constants";
 import { addCacheData } from "../utils/searchCacheSlice";
+import { Link, useNavigate } from "react-router-dom";
 
 const Header = () => {
   const [searchQuery, setSearchQuery] = useState("");
   const [searchSuggestions, setSearchSuggestions] = useState([]);
   const [showSearchSuggestions, setShowSearchSuggestions] = useState(false);
+
+  const navigate = useNavigate();
 
   const searchRef = useRef(null);
 
@@ -59,7 +62,7 @@ const Header = () => {
   };
 
   const getSearchSuggestions = async () => {
-    const data = await fetch(YOUTUBE_SEARCH_API + searchQuery);
+    const data = await fetch(YOUTUBE_SEARCH_SUGGESTION_API + searchQuery);
     const json = await data.json();
 
     setSearchSuggestions(json[1]);
@@ -98,9 +101,12 @@ const Header = () => {
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
             onFocus={() => setShowSearchSuggestions(true)}
-            onBlur={() => setShowSearchSuggestions(false)}
+            // onBlur={() => setShowSearchSuggestions(false)}
           />
-          <button className="bg-gray-100 px-5 py-2 rounded-r-full border-2 border-black-100">
+          <button
+            className="bg-gray-100 px-5 py-2 rounded-r-full border-2 border-black-100"
+            onClick={() => navigate("/search?query=" + searchQuery)}
+          >
             {" "}
             🔍{" "}
           </button>
@@ -110,7 +116,10 @@ const Header = () => {
           <ul>
             {showSearchSuggestions &&
               searchSuggestions.map((item) => (
-                <li className="py-2 px-5 hover:bg-gray-200"> 🔍 {item}</li>
+                <li className="py-2 px-5 hover:bg-gray-200">
+                  {" "}
+                  <Link to={"/search?query=" + item}> 🔍 {item} </Link>
+                </li>
               ))}
           </ul>
         </div>

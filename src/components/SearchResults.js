@@ -2,15 +2,20 @@ import React, { useEffect, useState } from "react";
 import VideoCard from "./VideoCard";
 import { YOUTUBE_SEARCH_RESULTS_API } from "../utils/constants";
 import { Link, useSearchParams } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { setShowSearchSuggestions } from "../utils/appSlice";
 
 const SearchResults = () => {
   const [searchResultsData, setSearchResultsData] = useState({});
   const [searchParams] = useSearchParams();
   const searchQuery = searchParams.get("query");
 
+  const dispatch = useDispatch();
+  dispatch(setShowSearchSuggestions(false));
+
   useEffect(() => {
     getSearchResults();
-  }, []);
+  }, [searchQuery]);
 
   const getSearchResults = async () => {
     const data = await fetch(YOUTUBE_SEARCH_RESULTS_API + "&q=" + searchQuery);

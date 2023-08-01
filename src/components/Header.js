@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, useState } from "react";
-import { toggleMenu } from "../utils/appSlice";
+import { setShowSearchSuggestions, toggleMenu } from "../utils/appSlice";
 import { useDispatch, useSelector } from "react-redux";
 import { YOUTUBE_SEARCH_SUGGESTION_API } from "../utils/constants";
 import { addCacheData } from "../utils/searchCacheSlice";
@@ -8,7 +8,10 @@ import { Link, useNavigate } from "react-router-dom";
 const Header = () => {
   const [searchQuery, setSearchQuery] = useState("");
   const [searchSuggestions, setSearchSuggestions] = useState([]);
-  const [showSearchSuggestions, setShowSearchSuggestions] = useState(false);
+  const showSearchSuggestions = useSelector(
+    (store) => store.app.showSearchSuggestions
+  );
+  const dispatch = useDispatch();
 
   const navigate = useNavigate();
 
@@ -35,7 +38,7 @@ const Header = () => {
   useEffect(() => {
     const handleScroll = () => {
       if (showSearchSuggestions && searchSuggestions && window.scrollY > 50) {
-        setShowSearchSuggestions(false);
+        dispatch(setShowSearchSuggestions(false));
       }
 
       if (
@@ -44,7 +47,7 @@ const Header = () => {
         searchSuggestions &&
         window.scrollY < 50
       ) {
-        setShowSearchSuggestions(true);
+        dispatch(setShowSearchSuggestions(true));
       }
     };
 
@@ -54,8 +57,6 @@ const Header = () => {
       window.removeEventListener("scroll", handleScroll);
     };
   }, [showSearchSuggestions]);
-
-  const dispatch = useDispatch();
 
   const toggleMenuHandler = () => {
     dispatch(toggleMenu());
@@ -100,7 +101,7 @@ const Header = () => {
             placeholder="Search"
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
-            onFocus={() => setShowSearchSuggestions(true)}
+            onFocus={() => dispatch(setShowSearchSuggestions(true))}
             // onBlur={() => setShowSearchSuggestions(false)}
           />
           <button

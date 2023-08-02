@@ -4,6 +4,7 @@ import { useSearchParams } from "react-router-dom";
 import { closeMenu } from "../utils/appSlice";
 import CommentsSection from "./CommentsSection";
 import LiveChatContainer from "./LiveChatContainer";
+import VideoSuggestionsSidebar from "./VideoSuggestionsSidebar";
 
 const WatchPage = () => {
   const [searchParams] = useSearchParams();
@@ -25,6 +26,7 @@ const WatchPage = () => {
         />
 
         <LiveChatContainer />
+        <VideoSuggestionsSidebar videoId={videoId} />
       </div>
       <CommentsSection />
     </div>

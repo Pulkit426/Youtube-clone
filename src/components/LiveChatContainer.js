@@ -41,7 +41,7 @@ const LiveChatContainer = () => {
     return () => clearInterval(timer);
   }, []);
   return (
-    <div className="flex flex-col w-96">
+    <div className="flex flex-col w-96 mx-2">
       <div className="py-2 m-2 mb-0 h-[50px] border border-black rounded-t-lg flex justify-between">
         <h1 className="text-2xl font-bold px-5  "> Live Chat</h1>
         <button

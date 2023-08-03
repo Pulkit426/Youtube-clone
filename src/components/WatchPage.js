@@ -14,8 +14,8 @@ const WatchPage = () => {
   dispatch(closeMenu());
 
   return (
-    <div className="col-span-10 p-2 m-2">
-      <div className="flex">
+    <div className="col-span-10 p-2 m-2 flex">
+      <div className="flex flex-col">
         <iframe
           width="900"
           height="450"
@@ -24,11 +24,13 @@ const WatchPage = () => {
           allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
           allowFullScreen
         />
+        <CommentsSection />
+      </div>
 
+      <div>
         <LiveChatContainer />
         <VideoSuggestionsSidebar videoId={videoId} />
       </div>
-      <CommentsSection />
     </div>
   );
 };

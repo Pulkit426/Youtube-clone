@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import SuggestedVideoCard from "./SuggestedVideoCard";
+import { YOUTUBE_RELATED_VIDEOS_API } from "../utils/constants";
 
 const VideoSuggestionsSidebar = ({ videoId }) => {
   const [videoData, setVideoData] = useState([]);
@@ -10,7 +11,7 @@ const VideoSuggestionsSidebar = ({ videoId }) => {
 
   const getVideoSuggestions = async () => {
     const data = await fetch(
-      `https://youtube.googleapis.com/youtube/v3/search?part=snippet&relatedToVideoId=${videoId}&type=video&maxResults=15&key=AIzaSyCGe2AQZKgHJAiLwHXPg_EAziT0iYTWLjM`
+      YOUTUBE_RELATED_VIDEOS_API + "&relatedToVideoId=" + videoId
     );
     const json = await data.json();
     setVideoData(json.items);

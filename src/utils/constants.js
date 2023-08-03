@@ -10,3 +10,7 @@ export const YOUTUBE_SEARCH_SUGGESTION_API =
 export const YOUTUBE_SEARCH_RESULTS_API =
   "https://youtube.googleapis.com/youtube/v3/search?part=snippet&maxResults=25&key=" +
   YOUTUBE_API_KEY;
+
+export const YOUTUBE_RELATED_VIDEOS_API =
+  "https://youtube.googleapis.com/youtube/v3/search?part=snippet&type=video&maxResults=15&key=" +
+  YOUTUBE_API_KEY;

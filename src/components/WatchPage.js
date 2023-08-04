@@ -5,6 +5,7 @@ import { closeMenu } from "../utils/appSlice";
 import CommentsSection from "./CommentsSection";
 import LiveChatContainer from "./LiveChatContainer";
 import VideoSuggestionsSidebar from "./VideoSuggestionsSidebar";
+import Description from "./Description";
 
 const WatchPage = () => {
   const [searchParams] = useSearchParams();
@@ -24,6 +25,7 @@ const WatchPage = () => {
           allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
           allowFullScreen
         />
+        <Description videoId={videoId} />
         <CommentsSection />
       </div>
 

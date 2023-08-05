@@ -102,7 +102,6 @@ const Header = () => {
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
             onFocus={() => dispatch(setShowSearchSuggestions(true))}
-            // onBlur={() => setShowSearchSuggestions(false)}
           />
           <button
             className="bg-gray-100 px-5 py-2 rounded-r-full border-2 border-black-100"
@@ -117,7 +116,10 @@ const Header = () => {
           <ul>
             {showSearchSuggestions &&
               searchSuggestions.map((item) => (
-                <li className="py-2 px-5 hover:bg-gray-200">
+                <li
+                  onClick={() => setSearchQuery(item)}
+                  className="py-2 px-5 hover:bg-gray-200"
+                >
                   {" "}
                   <Link to={"/search?query=" + item}> 🔍 {item} </Link>
                 </li>

@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { YOUTUBE_API_URL } from "../utils/constants";
 import VideoCard from "./VideoCard";
 import { Link } from "react-router-dom";
+import ShimmerHome from "./ShimmerHome";
 
 const VideoContainer = () => {
   const [videosData, setVideosData] = useState(null);
@@ -16,7 +17,7 @@ const VideoContainer = () => {
     getVideosData();
   }, []);
 
-  if (!videosData) return;
+  if (!videosData) return <ShimmerHome />;
 
   return (
     <div className="flex flex-wrap">

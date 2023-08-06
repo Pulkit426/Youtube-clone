@@ -4,9 +4,10 @@ import { YOUTUBE_SEARCH_RESULTS_API } from "../utils/constants";
 import { Link, useSearchParams } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { setShowSearchSuggestions } from "../utils/appSlice";
+import ShimmerHome from "./ShimmerHome";
 
 const SearchResults = () => {
-  const [searchResultsData, setSearchResultsData] = useState({});
+  const [searchResultsData, setSearchResultsData] = useState(null);
   const [searchParams] = useSearchParams();
   const searchQuery = searchParams.get("query");
 
@@ -23,6 +24,9 @@ const SearchResults = () => {
     console.log("SEARCH RESULTS - ", json);
     setSearchResultsData(json);
   };
+
+  if (!searchResultsData) return <ShimmerHome />;
+
   return (
     <div className="flex flex-wrap grid-cols-10">
       {searchResultsData?.items

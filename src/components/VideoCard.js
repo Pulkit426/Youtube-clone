@@ -10,7 +10,6 @@ const VideoCard = ({ videoData }) => {
         src={thumbnails.medium.url}
         className="rounded-lg "
       />
-      {/* <h1 className="my-1 font-bold text-l "> {title} </h1> */}
 
       <h1 className="my-2 mx-1 font-bold overflow-hidden">
         <p className="line-clamp-2">{title} </p>

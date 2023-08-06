@@ -75,7 +75,7 @@ const Header = () => {
   };
 
   return (
-    <div className="grid grid-flow-col p-2 m-2 shadow-lg">
+    <div className="flex flex-row p-2 m-2 shadow-lg justify-between">
       <div className="flex col-span-1">
         <img
           onClick={() => toggleMenuHandler()}
@@ -85,17 +85,17 @@ const Header = () => {
         />
         <img
           alt="logo"
-          className="h-14 mx-2"
+          className="h-14 w-28 ml-2"
           src="https://cdn.mos.cms.futurecdn.net/8gzcr6RpGStvZFA2qRt4v6-1200-80.jpg.webp"
         />
       </div>
 
-      <div className="col-span-12 px-10">
+      <div>
         <div>
           {" "}
           <input
             ref={searchRef}
-            className="w-[35rem] rounded-l-full p-2 border-2 
+            className="w-[500px] rounded-l-full p-2 border-2 
           border-black-400"
             type="text"
             placeholder="Search"
@@ -128,7 +128,7 @@ const Header = () => {
         </div>
       </div>
 
-      <div className="col-span-1 m-2">
+      <div className="m-2">
         <img
           alt="profile-icon"
           className="h-8"

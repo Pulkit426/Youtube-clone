@@ -83,11 +83,14 @@ const Header = () => {
           className="h-8 my-3 cursor-pointer"
           src="https://icons.veryicon.com/png/o/miscellaneous/linear-icon-45/hamburger-menu-5.png"
         />
-        <img
-          alt="logo"
-          className="h-14 w-28 ml-2"
-          src="https://cdn.mos.cms.futurecdn.net/8gzcr6RpGStvZFA2qRt4v6-1200-80.jpg.webp"
-        />
+
+        <Link to="/">
+          <img
+            alt="logo"
+            className="h-14 w-28 ml-2"
+            src="https://cdn.mos.cms.futurecdn.net/8gzcr6RpGStvZFA2qRt4v6-1200-80.jpg.webp"
+          />
+        </Link>
       </div>
 
       <div>

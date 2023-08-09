@@ -4,7 +4,7 @@ const VideoCard = ({ videoData }) => {
   const { title, channelTitle, thumbnails } = videoData.snippet;
 
   return (
-    <div className="p-2 m-2 flex flex-col w-96 h-92">
+    <div className="p-2 m-2 flex flex-col w-96 h-92 hover:bg-gray-200">
       <img
         alt="video-thumbnail"
         src={thumbnails.medium.url}

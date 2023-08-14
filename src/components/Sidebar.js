@@ -1,24 +1,36 @@
 import React from "react";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
+import { setCurrentVideoCategory } from "../utils/appSlice";
 
 const Sidebar = () => {
+  const videoCategories = [
+    "Home",
+    "Music",
+    "Sports",
+    "Gaming",
+    "News",
+    "Vlogs",
+  ];
+
   const isMenuActive = useSelector((store) => store.app.isMenuOpen);
+  const dispatch = useDispatch();
 
   if (!isMenuActive) return null;
 
   return (
-    <div className="shadow-lg p-2 m-2 col-span-1">
+    <div className="p-2 m-2 col-span-1 w-32">
       <ul>
-        <Link to="/">
-          <li>Home </li>
-        </Link>
-        <li>Shorts </li>
-        <li>Subscriptions </li>
-        <li>Library </li>
-        <li>History </li>
-        <li>Your Videos </li>
-        <li>Watch Later</li>
+        {videoCategories.map((item) => (
+          <Link to="/">
+            <li
+              className="p-2 text-lg h-12 hover:bg-gray-100 rounded-lg cursor-pointer"
+              onClick={() => dispatch(setCurrentVideoCategory(item))}
+            >
+              {item}
+            </li>
+          </Link>
+        ))}
       </ul>
     </div>
   );

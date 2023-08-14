@@ -5,6 +5,7 @@ const appSlice = createSlice({
   initialState: {
     isMenuOpen: true,
     showSearchSuggestions: false,
+    currentVideoCategory: "Home",
   },
   reducers: {
     toggleMenu: (state) => {
@@ -19,13 +20,23 @@ const appSlice = createSlice({
       state.isMenuOpen = false;
     },
 
+    setCurrentVideoCategory: (state, action) => {
+      state.currentVideoCategory = action.payload;
+      console.log("Current category - " + state.currentVideoCategory);
+    },
+
     setShowSearchSuggestions: (state, action) => {
       state.showSearchSuggestions = action.payload;
     },
   },
 });
 
-export const { toggleMenu, showMenu, closeMenu, setShowSearchSuggestions } =
-  appSlice.actions;
+export const {
+  toggleMenu,
+  showMenu,
+  closeMenu,
+  setCurrentVideoCategory,
+  setShowSearchSuggestions,
+} = appSlice.actions;
 
 export default appSlice.reducer;

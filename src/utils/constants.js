@@ -25,3 +25,8 @@ export const YOUTUBE_SPECIFIC_VIDEO_DATA_API =
   CORS_PROXY +
   "https://www.googleapis.com/youtube/v3/videos?part=snippet&key=" +
   YOUTUBE_API_KEY;
+
+export const YOUTUBE_CATEGORY_API_URL =
+  CORS_PROXY +
+  "https://www.googleapis.com/youtube/v3/videos?part=snippet&regionCode=IN&type=video&maxResults=25&key=" +
+  YOUTUBE_API_KEY;

@@ -75,7 +75,7 @@ const Header = () => {
   };
 
   return (
-    <div className="flex flex-row p-2 m-2 shadow-lg justify-between">
+    <div className="flex flex-row p-2 mb-2 shadow-lg justify-between">
       <div className="flex col-span-1">
         <img
           onClick={() => toggleMenuHandler()}

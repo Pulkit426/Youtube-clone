@@ -1,6 +1,6 @@
 const YOUTUBE_API_KEY = "AIzaSyCGe2AQZKgHJAiLwHXPg_EAziT0iYTWLjM";
 
-const CORS_PROXY = "https://corsproxy.io/?";
+const CORS_PROXY = "https://cors-anywhere.herokuapp.com/?";
 
 export const YOUTUBE_API_URL =
   CORS_PROXY +
@@ -30,3 +30,4 @@ export const YOUTUBE_CATEGORY_API_URL =
   CORS_PROXY +
   "https://www.googleapis.com/youtube/v3/videos?part=snippet&regionCode=IN&type=video&maxResults=25&key=" +
   YOUTUBE_API_KEY;
+

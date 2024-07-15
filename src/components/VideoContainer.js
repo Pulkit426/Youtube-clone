@@ -1,5 +1,12 @@
 import React, { useEffect, useState } from "react";
-import { YOUTUBE_API_URL, YOUTUBE_CATEGORY_API_URL } from "../utils/constants";
+import {
+  YOUTUBE_API_URL,
+  YOUTUBE_MUSIC_CATEGORY_API_URL,
+  YOUTUBE_SPORTS_CATEGORY_API_URL,
+  YOUTUBE_GAMING_CATEGORY_API_URL,
+  YOUTUBE_NEWS_CATEGORY_API_URL,
+  YOUTUBE_VLOGS_CATEGORY_API_URL,
+} from "../utils/constants";
 import VideoCard from "./VideoCard";
 import { Link } from "react-router-dom";
 import ShimmerHome from "./ShimmerHome";
@@ -15,11 +22,11 @@ const VideoContainer = () => {
 
   const categoryToUrl = {
     Home: YOUTUBE_API_URL,
-    Music: YOUTUBE_CATEGORY_API_URL + "&videoCategoryId=10&chart=mostPopular",
-    Sports: YOUTUBE_CATEGORY_API_URL + "&videoCategoryId=17&chart=mostPopular",
-    Gaming: YOUTUBE_CATEGORY_API_URL + "&videoCategoryId=20&chart=mostPopular",
-    News: YOUTUBE_CATEGORY_API_URL + "&videoCategoryId=25&chart=mostPopular",
-    Vlogs: YOUTUBE_CATEGORY_API_URL + "&videoCategoryId=22&chart=mostPopular",
+    Music: YOUTUBE_MUSIC_CATEGORY_API_URL,
+    Sports: YOUTUBE_SPORTS_CATEGORY_API_URL,
+    Gaming: YOUTUBE_GAMING_CATEGORY_API_URL,
+    News: YOUTUBE_NEWS_CATEGORY_API_URL,
+    Vlogs: YOUTUBE_VLOGS_CATEGORY_API_URL,
   };
 
   useEffect(() => {

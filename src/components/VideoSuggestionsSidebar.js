@@ -1,9 +1,6 @@
 import React, { useEffect, useState } from "react";
 import SuggestedVideoCard from "./SuggestedVideoCard";
-import {
-  YOUTUBE_API_URL,
-  YOUTUBE_RELATED_VIDEOS_API,
-} from "../utils/constants";
+import { YOUTUBE_API_URL } from "../utils/constants";
 import { Link } from "react-router-dom";
 
 const VideoSuggestionsSidebar = ({ videoId }) => {
@@ -14,7 +11,12 @@ const VideoSuggestionsSidebar = ({ videoId }) => {
   }, []);
 
   const getVideoSuggestions = async () => {
-    const data = await fetch(YOUTUBE_API_URL + "&relatedToVideoId=" + videoId);
+    const data = await fetch(
+      YOUTUBE_API_URL +
+        "%26relatedToVideoId%3D" +
+        videoId +
+        "%26maxResults%3D12"
+    );
     const json = await data.json();
     setVideoData(json.items);
   };

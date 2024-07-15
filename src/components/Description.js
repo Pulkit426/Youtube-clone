@@ -12,7 +12,7 @@ const Description = ({ videoId }) => {
 
   const getDescription = async () => {
     const data = await fetch(
-      YOUTUBE_SPECIFIC_VIDEO_DATA_API + "&id=" + videoId
+      YOUTUBE_SPECIFIC_VIDEO_DATA_API + "%26id%3D" + videoId
     );
     const json = await data.json();
     setVideoData(json.items[0]);

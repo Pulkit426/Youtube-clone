@@ -19,9 +19,10 @@ const SearchResults = () => {
   }, [searchQuery]);
 
   const getSearchResults = async () => {
-    const data = await fetch(YOUTUBE_SEARCH_RESULTS_API + "&q=" + searchQuery);
+    const data = await fetch(
+      YOUTUBE_SEARCH_RESULTS_API + "%26q%3D" + searchQuery
+    );
     const json = await data.json();
-    console.log("SEARCH RESULTS - ", json);
     setSearchResultsData(json);
   };
 
